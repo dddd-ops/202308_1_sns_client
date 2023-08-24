@@ -50,6 +50,8 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
 
     const login = async (token:string) => {
         localStorage.setItem("auth_token", token);
+        document.cookie = `auth_token=${token}; path=/;`;
+
         apiClient.defaults.headers["Authorization"] = `Bearer ${token}`;
         
         try {
